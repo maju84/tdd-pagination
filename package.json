@@ -1,0 +1,28 @@
+{
+    "name": "tdd-pagination",
+    "version": "1.0.0",
+    "description": "a code kata about pagination using tdd.",
+    "contributors": [
+        {
+          "name": "maju84"
+        }
+    ],
+    "private": false,
+    "main": "build/lib/index.js",
+    "types": "build/lib/index.d.ts",
+    "dependencies": {},
+    "devDependencies": {
+        "assertthat": "6.4.0",
+        "roboter": "12.7.0"
+    },
+    "scripts": {},
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/maju84/tdd-pagination"
+    },
+    "keywords": [
+      "tdd",
+      "pagination"
+    ],
+    "license": "MIT"
+}
