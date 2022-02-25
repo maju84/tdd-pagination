@@ -2,9 +2,6 @@ const getPagination = ({ currentPage, totalPages }: {
   currentPage: number;
   totalPages: number;
 }): string => {
-  if (currentPage === 1 && totalPages === 1) {
-    return '(1)';
-  }
 
   const pages = [];
 
