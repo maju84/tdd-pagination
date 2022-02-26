@@ -28,18 +28,25 @@ suite('getPagination', (): void => {
   });
 
   suite('more complex cases with ellipsis', (): void => {
-    test(`returns '1 ... 41 (42) 43 ... 103' for page 42 of 103.`,
-      async (): Promise<void> => {
-        // Arrange
-        const currentPage = 42,
-              totalPages = 103;
+    const values = [
+      { current: 42, total: 103, expected: '1 ... 41 (42) 43 ... 103' },
+      { current: 23, total: 87, expected: '1 ... 22 (23) 24 ... 87' }
+    ];
 
-        // Act
-        const pagination = getPagination({ currentPage, totalPages });
+    for (const { current, total, expected } of values) {
+      test(`returns ${expected} for page ${current} of ${total}.`,
+        async (): Promise<void> => {
+          // Arrange
+          const currentPage = current,
+                totalPages = total;
 
-        // Assert
-        assert.that(pagination).is.equalTo('1 ... 41 (42) 43 ... 103');
-      });
+          // Act
+          const pagination = getPagination({ currentPage, totalPages });
+
+          // Assert
+          assert.that(pagination).is.equalTo(expected);
+        });
+    }
   });
 
   suite('error cases', (): void => {
