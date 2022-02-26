@@ -31,7 +31,7 @@ suite('getPagination', (): void => {
   });
 
   suite('error cases', (): void => {
-    test('throws exception if total is 0.',
+    test('throws exception if totalPages is 0.',
       async (): Promise<void> => {
         // Arrange
         const currentPage = 1,
@@ -41,6 +41,54 @@ suite('getPagination', (): void => {
         assert.that((): void => {
           getPagination({ currentPage, totalPages });
         }).is.throwing('totalPages must be at least 1.');
+      });
+
+    test('throws exception if totalPages is less than 0.',
+      async (): Promise<void> => {
+        // Arrange
+        const currentPage = 1,
+              totalPages = -1;
+
+        // Act + Assert
+        assert.that((): void => {
+          getPagination({ currentPage, totalPages });
+        }).is.throwing('totalPages must be at least 1.');
+      });
+
+    test('throws exception if currentPage is 0.',
+      async (): Promise<void> => {
+        // Arrange
+        const currentPage = 0,
+              totalPages = 1;
+
+        // Act + Assert
+        assert.that((): void => {
+          getPagination({ currentPage, totalPages });
+        }).is.throwing('currentPage must be at least 1.');
+      });
+
+    test('throws exception if currentPage is less than 0.',
+      async (): Promise<void> => {
+        // Arrange
+        const currentPage = -1,
+              totalPages = 1;
+
+        // Act + Assert
+        assert.that((): void => {
+          getPagination({ currentPage, totalPages });
+        }).is.throwing('currentPage must be at least 1.');
+      });
+
+    test('throws exception if currentPage is greater than totalPages.',
+      async (): Promise<void> => {
+        // Arrange
+        const currentPage = 42,
+              totalPages = 1;
+
+        // Act + Assert
+        assert.that((): void => {
+          getPagination({ currentPage, totalPages });
+        }).is.throwing('currentPage must be lower or equal to totalPages.');
       });
   });
 });

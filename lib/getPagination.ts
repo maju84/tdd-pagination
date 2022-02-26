@@ -5,7 +5,13 @@ const getPagination = ({ currentPage, totalPages }: {
   if (totalPages < 1) {
     throw new Error('totalPages must be at least 1.');
   }
-  
+  if (currentPage < 1) {
+    throw new Error('currentPage must be at least 1.');
+  }
+  if (currentPage > totalPages) {
+    throw new Error('currentPage must be lower or equal to totalPages.');
+  }
+
   const pages = [];
 
   for (let page = 1; page <= totalPages; page++) {
