@@ -14,12 +14,22 @@ const getPagination = ({ currentPage, totalPages }: {
 
   const pages = [];
 
-  for (let page = 1; page <= totalPages; page++) {
-    if (page === currentPage) {
-      pages.push(`(${page})`);
-    } else {
-      pages.push(page);
+  if (totalPages <= 7) {
+    for (let page = 1; page <= totalPages; page++) {
+      if (page === currentPage) {
+        pages.push(`(${page})`);
+      } else {
+        pages.push(page);
+      }
     }
+  } else {
+    pages.push(1);
+    pages.push('...');
+    pages.push(currentPage - 1);
+    pages.push(`(${currentPage})`);
+    pages.push(currentPage + 1);
+    pages.push('...');
+    pages.push(totalPages);
   }
 
   return pages.join(' ');
