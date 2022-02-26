@@ -28,6 +28,18 @@ suite('getPagination', (): void => {
   });
 
   suite('more complex cases with ellipsis', (): void => {
+    test(`returns '1 ... 41 (42) 43 ... 103' for page 42 of 103.`,
+      async (): Promise<void> => {
+        // Arrange
+        const currentPage = 42,
+              totalPages = 103;
+
+        // Act
+        const pagination = getPagination({ currentPage, totalPages });
+
+        // Assert
+        assert.that(pagination).is.equalTo('1 ... 41 (42) 43 ... 103');
+      });
   });
 
   suite('error cases', (): void => {
