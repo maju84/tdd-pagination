@@ -30,7 +30,17 @@ suite('getPagination', (): void => {
   suite('more complex cases with ellipsis', (): void => {
     const values = [
       { current: 42, total: 103, expected: '1 ... 41 (42) 43 ... 103' },
-      { current: 23, total: 87, expected: '1 ... 22 (23) 24 ... 87' }
+      { current: 23, total: 87, expected: '1 ... 22 (23) 24 ... 87' },
+      { current: 5, total: 42, expected: '1 ... 4 (5) 6 ... 42' },
+      { current: 99, total: 103, expected: '1 ... 98 (99) 100 ... 103' },
+
+      { current: 1, total: 42, expected: '(1) 2 3 4 5 ... 42' },
+      { current: 2, total: 42, expected: '1 (2) 3 4 5 ... 42' },
+      { current: 4, total: 42, expected: '1 2 3 (4) 5 ... 42' },
+
+      { current: 100, total: 103, expected: '1 ... 99 (100) 101 102 103' },
+      { current: 102, total: 103, expected: '1 ... 99 100 101 (102) 103' },
+      { current: 103, total: 103, expected: '1 ... 99 100 101 102 (103)' }
     ];
 
     for (const { current, total, expected } of values) {
